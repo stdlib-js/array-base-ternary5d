@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2023 The Stdlib Authors.
@@ -16,18 +16,38 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@main/index.d.ts"/>
+
+import { Array5D } from '@stdlib/types/array';
+import { Shape5D } from '@stdlib/types/ndarray';
 
 /**
-* Apply a ternary callback to elements in three five-dimensional nested input arrays and assign results to elements in a five-dimensional nested output array.
+* Ternary callback.
 *
-* @module @stdlib/array-base-ternary5d
+* @param v1 - element from first input array
+* @param v2 - element from second input array
+* @param v3 - element from third input array
+* @returns result
+*/
+type Ternary<T, U, V, W> = ( v1: T, v2: U, v3: V ) => W;
+
+/**
+* Applies a ternary callback to elements in three five-dimensional nested input arrays and assigns results to elements in a five-dimensional nested output array.
+*
+* ## Notes
+*
+* -   The function assumes that the input and output arrays have the same shape.
+*
+* @param arrays - array containing three input nested arrays and one output nested array
+* @param shape - array shape
+* @param fcn - ternary callback
 *
 * @example
 * var add = require( '@stdlib/math-base-ops-add3' );
 * var ones5d = require( '@stdlib/array-base-ones5d' );
 * var zeros5d = require( '@stdlib/array-base-zeros5d' );
-* var ternary5d = require( '@stdlib/array-base-ternary5d' );
 *
 * var shape = [ 1, 1, 1, 2, 2 ];
 *
@@ -41,12 +61,9 @@
 * console.log( out );
 * // => [ [ [ [ [ 3.0, 3.0 ], [ 3.0, 3.0 ] ] ] ] ]
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function ternary5d<T = unknown, U = unknown, V = unknown, W = unknown>( arrays: [ Array5D<T>, Array5D<U>, Array5D<V>, Array5D<W> ], shape: Shape5D, fcn: Ternary<T, U, V, W> ): void;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = ternary5d;
